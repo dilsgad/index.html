@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dilshad Ahmad — AI / ML Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --border: #222222;
+      --border2: #2e2e2e;
+      --text: #e8e8e8;
+      --text2: #888888;
+      --text3: #555555;
+      --accent: #c8f040;
+      --accent2: #a8d020;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text3);
+      letter-spacing: 0.12em;
+      margin-bottom: 2rem;
+    }
+    .hero-tag::before { content: '// '; color: var(--accent); }
+    h1 {
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    h1 span { color: var(--accent); }
+    .hero-sub {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+    }
+    .hero-desc {
+      max-width: 560px;
+      color: var(--text2);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+    .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.4rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      font-weight: 500;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1px solid var(--border2);
+      color: var(--text2);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 3rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--text3);
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+      letter-spacing: 0.12em;
+      margin-bottom: 3rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    section.full { max-width: none; }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 3.5rem;
+    }
+
+    /* EXPERIENCE */
+    .exp-grid { display: grid; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .exp-item.visible { opacity: 1; transform: translateY(0); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-role {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .exp-company {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .exp-points { list-style: none; padding: 0; }
+    .exp-points li {
+      font-size: 0.9rem;
+      color: var(--text2);
+      padding-left: 1.2rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+    .exp-points li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--text3);
+    }
+    .exp-duration {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      white-space: nowrap;
+      align-self: start;
+      margin-top: 0.2rem;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .skill-group {
+      background: var(--bg);
+      padding: 1.8rem;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .skill-group.visible { opacity: 1; transform: translateY(0); }
+    .skill-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-size: 0.82rem;
+      color: var(--text2);
+      background: var(--bg3);
+      padding: 0.25rem 0.65rem;
+      border-radius: 2px;
+      border: 1px solid var(--border2);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .project-card {
+      background: var(--bg);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s, transform 0.6s, background 0.2s;
+      cursor: default;
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { background: var(--bg2); }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .project-best-model {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: rgba(200,240,64,0.07);
+      border: 1px solid rgba(200,240,64,0.2);
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text3);
+      border: 1px solid var(--border2);
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+
+    /* EDUCATION */
+    .edu-grid { display: grid; gap: 0; }
+    .edu-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .edu-item.visible { opacity: 1; transform: translateY(0); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-degree { font-size: 1rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text2);
+    }
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      white-space: nowrap;
+      align-self: start;
+      margin-top: 0.2rem;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .contact-section section {
+      border-bottom: none;
+    }
+    .contact-heading {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+    }
+    .contact-sub {
+      font-size: 0.9rem;
+      color: var(--text2);
+      margin-bottom: 3rem;
+    }
+    .contact-links { display: grid; gap: 0; }
+    .contact-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link:hover { color: var(--accent); }
+    .contact-link-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text3);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+    .contact-link-value { font-size: 0.95rem; }
+    .contact-link-arrow { color: var(--text3); font-size: 1rem; }
+    .contact-meta {
+      display: flex; gap: 3rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .lang-item { }
+    .lang-name { font-weight: 500; font-size: 0.9rem; }
+    .lang-level {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+    }
+    .footer-loc {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; }
+      .exp-duration, .edu-year { margin-top: 0; }
+      footer { padding: 1.2rem 1.5rem; }
+      .hero-scroll { left: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">DA</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">AI &amp; Machine Learning Engineer</div>
+    <h1>Dilshad<br /><span>Ahmad</span></h1>
+    <div class="hero-sub">Building Intelligent Systems</div>
+    <p class="hero-desc">
+      Motivated AI/ML Engineer with hands-on experience in machine learning model development,
+      data preprocessing, and analysis. Proficient in Python, SQL, Power BI, and deep learning
+      frameworks — passionate about applying data-driven approaches to solve real-world problems.
+    </p>
+    <div class="hero-links">
+      <a href="#contact" class="btn btn-primary">↗ Get in Touch</a>
+      <a href="https://github.com/dilsgad" class="btn btn-ghost" target="_blank">⌥ GitHub</a>
+      <a href="https://www.linkedin.com/in/dilshadahmad1508" class="btn btn-ghost" target="_blank">in LinkedIn</a>
+    </div>
+    <div class="hero-scroll">scroll</div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-num">01</div>
+    <h2>Experience</h2>
+    <div class="exp-grid">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">AI Engineer Intern</div>
+          <div class="exp-company">ISTUDIO</div>
+          <ul class="exp-points">
+            <li>Developed machine learning models and performed data preprocessing on real-world datasets.</li>
+            <li>Evaluated model performance and optimized results using appropriate metrics.</li>
+            <li>Assisted in building AI-driven solutions and experimentation workflows.</li>
+          </ul>
+        </div>
+        <div class="exp-duration">6 months</div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Python Developer Intern</div>
+          <div class="exp-company">THE WEBSITE MAKERS</div>
+          <ul class="exp-points">
+            <li>Worked on Python development and backend logic for web applications.</li>
+            <li>Collaborated with team members in project environments and implemented application features.</li>
+          </ul>
+        </div>
+        <div class="exp-duration">3 months</div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">ML Engineer Intern</div>
+          <div class="exp-company">YIB FOUNDATION</div>
+          <ul class="exp-points">
+            <li>Built and trained machine learning models using real-world datasets.</li>
+            <li>Performed data preprocessing, feature engineering, and model evaluation.</li>
+            <li>Applied Python-based ML algorithms to solve analytical problems.</li>
+          </ul>
+        </div>
+        <div class="exp-duration">3 months</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-num">02</div>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-label">Languages &amp; Query</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Linear Regression</span>
+          <span class="skill-tag">Logistic Regression</span>
+          <span class="skill-tag">Random Forest</span>
+          <span class="skill-tag">Gradient Boosting</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Deep Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">ANN</span>
+          <span class="skill-tag">CNN</span>
+          <span class="skill-tag">RNN</span>
+          <span class="skill-tag">LSTM</span>
+          <span class="skill-tag">GRU</span>
+          <span class="skill-tag">Transformers</span>
+          <span class="skill-tag">Encoder-Decoder</span>
+          <span class="skill-tag">VGG16</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Computer Vision</div>
+        <div class="skill-tags">
+          <span class="skill-tag">OpenCV</span>
+          <span class="skill-tag">YOLO</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Data Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span>
+          <span class="skill-tag">EDA</span>
+          <span class="skill-tag">Statistical Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Visualization &amp; BI</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Data Processing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Data Cleaning</span>
+          <span class="skill-tag">Feature Engineering</span>
+          <span class="skill-tag">PCA</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Model Evaluation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Accuracy</span>
+          <span class="skill-tag">Precision / Recall</span>
+          <span class="skill-tag">F1-score</span>
+          <span class="skill-tag">ROC-AUC</span>
+          <span class="skill-tag">R²</span>
+          <span class="skill-tag">RMSE</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-num">03</div>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+
+      <!-- Existing: Face Recognition -->
+      <div class="project-card">
+        <span class="project-icon">👁</span>
+        <div class="project-type">Computer Vision</div>
+        <div class="project-title">Face Recognition System</div>
+        <p class="project-desc">
+          A real-time face recognition system built with Python and OpenCV, capable of detecting
+          and identifying faces from images or live camera feed. The pipeline covers facial data
+          collection, preprocessing, model training, and live identification — all implemented in
+          modular, reusable scripts.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">OpenCV</span>
+          <span class="project-tag">Computer Vision</span>
+          <span class="project-tag">Real-time</span>
+        </div>
+        <a href="https://github.com/dilsgad" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+
+      <!-- NEW: House Price Prediction -->
+      <div class="project-card">
+        <span class="project-icon">🏠</span>
+        <div class="project-type">Regression</div>
+        <div class="project-title">House Price Prediction</div>
+        <p class="project-desc">
+          A comprehensive regression pipeline to predict residential sale prices. Includes full EDA,
+          correlation analysis, feature preprocessing with imputation and scaling, and benchmarking
+          of six regression models. Gradient Boosting achieved the best R² score and was selected
+          for production deployment.
+        </p>
+        <div class="project-best-model">★ Best Model: Gradient Boosting</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Scikit-learn</span>
+          <span class="project-tag">Gradient Boosting</span>
+          <span class="project-tag">Random Forest</span>
+          <span class="project-tag">EDA</span>
+          <span class="project-tag">Regression</span>
+        </div>
+        <a href="https://github.com/dilsgad" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+
+      <!-- NEW: Heart Disease Prediction -->
+      <div class="project-card">
+        <span class="project-icon">❤️</span>
+        <div class="project-type">Classification</div>
+        <div class="project-title">Heart Disease Prediction</div>
+        <p class="project-desc">
+          A binary classification system to detect the presence of heart disease from clinical
+          features. Six classifiers were trained and evaluated — Logistic Regression, Decision Tree,
+          Random Forest, KNN, SVM, and Gradient Boosting — with Gradient Boosting delivering the
+          highest accuracy.
+        </p>
+        <div class="project-best-model">★ Best Model: Gradient Boosting</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Scikit-learn</span>
+          <span class="project-tag">Gradient Boosting</span>
+          <span class="project-tag">SVM</span>
+          <span class="project-tag">Classification</span>
+          <span class="project-tag">Healthcare</span>
+        </div>
+        <a href="https://github.com/dilsgad" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+
+      <!-- NEW: Blood Donation Prediction -->
+      <div class="project-card">
+        <span class="project-icon">🩸</span>
+        <div class="project-type">Classification</div>
+        <div class="project-title">Blood Donation Prediction</div>
+        <p class="project-desc">
+          Predicts whether a blood donor will donate again in a given month using the RFMT
+          (Recency, Frequency, Monetary, Time) feature set. Addressed class imbalance and compared
+          seven models; LightGBM achieved the best performance and was chosen as the final model.
+        </p>
+        <div class="project-best-model">★ Best Model: LightGBM</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">LightGBM</span>
+          <span class="project-tag">XGBoost</span>
+          <span class="project-tag">Imbalanced Data</span>
+          <span class="project-tag">Classification</span>
+          <span class="project-tag">Healthcare</span>
+        </div>
+        <a href="https://github.com/dilsgad" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+
+      <!-- NEW: Sales Effectiveness Lead Prediction (Client Project) -->
+      <div class="project-card">
+        <span class="project-icon">📊</span>
+        <div class="project-type">Classification &nbsp;·&nbsp; <span style="color:var(--text2);font-style:italic;">Client Project</span></div>
+        <div class="project-title">Sales Effectiveness &amp; Lead Prediction</div>
+        <p class="project-desc">
+          A production-grade lead conversion classifier built on real client sales data pulled
+          directly from a live MySQL database. Analyses lead sources, delivery modes, and sales
+          agent performance to predict deal status. Random Forest delivered the strongest results,
+          with Logistic Regression providing the best interpretability for the client.
+        </p>
+        <div class="project-best-model">★ Best Model: Random Forest &nbsp;|&nbsp; Deployed: Logistic Regression</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">MySQL</span>
+          <span class="project-tag">Random Forest</span>
+          <span class="project-tag">Logistic Regression</span>
+          <span class="project-tag">Feature Importance</span>
+          <span class="project-tag">Sales Analytics</span>
+        </div>
+        <span class="project-link" style="cursor:default;color:var(--text3);">Confidential — Client Project</span>
+      </div>
+
+      <!-- NEW: Automobile Price Prediction -->
+      <div class="project-card">
+        <span class="project-icon">🚗</span>
+        <div class="project-type">Regression</div>
+        <div class="project-title">Automobile Imports Price Prediction</div>
+        <p class="project-desc">
+          Predicts the market price of imported automobiles from a rich set of technical and
+          categorical features including engine type, body style, drive wheels, and horsepower.
+          Six regression models were benchmarked; XGBoost Regressor achieved the highest R² score
+          and was selected for deployment.
+        </p>
+        <div class="project-best-model">★ Best Model: XGBoost Regressor</div>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">XGBoost</span>
+          <span class="project-tag">LightGBM</span>
+          <span class="project-tag">Pipeline</span>
+          <span class="project-tag">Feature Engineering</span>
+          <span class="project-tag">Regression</span>
+        </div>
+        <a href="https://github.com/dilsgad" class="project-link" target="_blank">View on GitHub →</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-num">04</div>
+    <h2>Education</h2>
+    <div class="edu-grid">
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">B.Tech — Computer Science Engineering</div>
+          <div class="edu-school">Madhyanchal Professional University</div>
+        </div>
+        <div class="edu-year">2022 – 2025</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-degree">B.Sc Information Technology</div>
+          <div class="edu-school">D.A-V College, Kanpur</div>
+        </div>
+        <div class="edu-year">2019 – 2022</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <section>
+      <h2 class="contact-heading">Let's build something<br />intelligent together.</h2>
+      <p class="contact-sub">Open to AI/ML roles, collaborations, and interesting projects.</p>
+
+      <div class="contact-links">
+        <a href="mailto:dilshad1582001@gmail.com" class="contact-link">
+          <div>
+            <span class="contact-link-label">Email</span>
+            <span class="contact-link-value">dilshad1582001@gmail.com</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:+916391147938" class="contact-link">
+          <div>
+            <span class="contact-link-label">Phone</span>
+            <span class="contact-link-value">+91 6391147938</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/dilshadahmad1508" target="_blank" class="contact-link">
+          <div>
+            <span class="contact-link-label">LinkedIn</span>
+            <span class="contact-link-value">View Profile →</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://github.com/dilsgad" target="_blank" class="contact-link">
+          <div>
+            <span class="contact-link-label">GitHub</span>
+            <span class="contact-link-value">View Repos →</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="contact-meta">
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">Intermediate</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Hindi</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Urdu</div>
+          <div class="lang-level">Fluent</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-copy">© 2025 Dilshad Ahmad — AI / ML Engineer</div>
+    <div class="footer-loc">◎ Basti, Uttar Pradesh</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.exp-item, .skill-group, .project-card, .edu-item').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
